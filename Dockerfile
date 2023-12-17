@@ -3,7 +3,7 @@ RUN apt-get update
 RUN apt-get -y install wget build-essential cmake git software-properties-common curl zip unzip tar
 
 FROM base AS clang_setup
-RUN wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
+RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key|sudo apt-key add -
 RUN add-apt-repository deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy-17 main
 RUN add-apt-repository deb-src http://apt.llvm.org/jammy/ llvm-toolchain-jammy-17 main
 
