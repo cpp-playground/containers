@@ -3,7 +3,9 @@ RUN apt-get update
 RUN apt-get -y install wget build-essential cmake git
 
 FROM base AS clang_setup
-RUN  wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add -
+RUN wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
+RUN deb http://apt.llvm.org/jammy/ llvm-toolchain-jammy main
+RUN deb-src http://apt.llvm.org/jammy/ llvm-toolchain-jammy main
 RUN apt-get -y update
 RUN apt-get -y install libllvm-17-ocaml-dev libllvm17 llvm-17 llvm-17-dev llvm-17-doc llvm-17-examples llvm-17-runtime
 RUN apt-get -y install clang-17 clang-tools-17 clang-17-doc libclang-common-17-dev libclang-17-dev libclang1-17 clang-format-17 python3-clang-17 clangd-17 clang-tidy-17
