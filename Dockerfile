@@ -1,6 +1,6 @@
 FROM ubuntu:22.04 AS base
 RUN apt-get update
-RUN apt-get -y install wget build-essential cmake git
+RUN apt-get -y install wget build-essential cmake git software-properties-common
 
 FROM base AS clang_setup
 RUN wget -qO- https://apt.llvm.org/llvm-snapshot.gpg.key | tee /etc/apt/trusted.gpg.d/apt.llvm.org.asc
