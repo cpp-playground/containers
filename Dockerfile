@@ -17,3 +17,6 @@ FROM clang_setup AS vcpkg_setup
 RUN git clone https://github.com/Microsoft/vcpkg.git /vcpkg
 RUN /vcpkg/bootstrap-vcpkg.sh
 ENV VCPKG_INSTALLATION_ROOT=/vcpkg
+
+FROM vcpkg_setup AS final
+RUN pip install cmakelang
