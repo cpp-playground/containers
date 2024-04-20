@@ -1,6 +1,6 @@
 FROM ubuntu:22.04 AS base
 RUN apt-get update
-RUN apt-get -y install wget build-essential cmake git software-properties-common curl zip unzip tar pkg-config
+RUN apt-get -y install wget build-essential cmake git software-properties-common curl zip unzip tar pkg-config python3 python3-pip
 
 FROM base AS clang_setup
 RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key| apt-key add -
@@ -17,3 +17,6 @@ FROM clang_setup AS vcpkg_setup
 RUN git clone https://github.com/Microsoft/vcpkg.git /vcpkg
 RUN /vcpkg/bootstrap-vcpkg.sh
 ENV VCPKG_INSTALLATION_ROOT=/vcpkg
+
+FROM vcpkg_setup AS final
+RUN pip3 install cmakelang
