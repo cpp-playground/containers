@@ -19,4 +19,4 @@ RUN /vcpkg/bootstrap-vcpkg.sh
 ENV VCPKG_INSTALLATION_ROOT=/vcpkg
 
 FROM vcpkg_setup AS final
-RUN pip install cmakelang
+RUN pip3 install cmakelang
